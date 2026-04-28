@@ -1,0 +1,180 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 7%;
+
+    --card: 0 0% 98%;
+    --card-foreground: 0 0% 7%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 7%;
+
+    --primary: 349 100% 55%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 0 0% 96%;
+    --secondary-foreground: 0 0% 20%;
+
+    --muted: 0 0% 95%;
+    --muted-foreground: 0 0% 45%;
+
+    --accent: 0 0% 93%;
+    --accent-foreground: 0 0% 10%;
+
+    --destructive: 0 72% 55%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 0 0% 90%;
+    --input: 0 0% 90%;
+    --ring: 349 100% 55%;
+
+    --radius: 0.75rem;
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 0 0% 20%;
+    --sidebar-primary: 349 100% 55%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 0 0% 94%;
+    --sidebar-accent-foreground: 0 0% 10%;
+    --sidebar-border: 0 0% 92%;
+    --sidebar-ring: 349 100% 55%;
+
+    /* Custom tokens */
+    --glow-primary: 349 100% 55%;
+    --glow-accent: 349 80% 65%;
+    --glass: 0 0% 100%;
+    --glass-border: 0 0% 90%;
+    --surface-hover: 0 0% 96%;
+    --surface-elevated: 0 0% 100%;
+    --nowplaying-gradient-from: 349 100% 55%;
+    --nowplaying-gradient-to: 349 80% 40%;
+  }
+
+  .dark {
+    --background: 0 0% 0%;
+    --foreground: 0 0% 98%;
+
+    --card: 0 0% 7%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 0 0% 7%;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 349 100% 55%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 0 0% 12%;
+    --secondary-foreground: 0 0% 85%;
+
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 55%;
+
+    --accent: 0 0% 15%;
+    --accent-foreground: 0 0% 90%;
+
+    --destructive: 0 72% 55%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 0 0% 18%;
+    --input: 0 0% 18%;
+    --ring: 349 100% 55%;
+
+    --sidebar-background: 0 0% 5%;
+    --sidebar-foreground: 0 0% 85%;
+    --sidebar-primary: 349 100% 55%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 0 0% 12%;
+    --sidebar-accent-foreground: 0 0% 85%;
+    --sidebar-border: 0 0% 15%;
+    --sidebar-ring: 349 100% 55%;
+
+    --glass: 0 0% 8%;
+    --glass-border: 0 0% 18%;
+    --surface-hover: 0 0% 14%;
+    --surface-elevated: 0 0% 10%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Inter', 'Helvetica Neue', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+@layer utilities {
+  .glass-panel {
+    background: hsl(var(--glass) / 0.8);
+    backdrop-filter: blur(40px) saturate(180%);
+    -webkit-backdrop-filter: blur(40px) saturate(180%);
+    border: 1px solid hsl(var(--glass-border) / 0.5);
+  }
+
+  .glow-primary {
+    box-shadow: 0 4px 15px hsl(var(--glow-primary) / 0.3);
+  }
+
+  .glow-accent {
+    box-shadow: 0 4px 15px hsl(var(--glow-accent) / 0.3);
+  }
+
+  .text-gradient {
+    background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--glow-accent)));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .surface-elevated {
+    background: hsl(var(--surface-elevated));
+    box-shadow: 0 1px 3px hsl(0 0% 0% / 0.06), 0 1px 2px hsl(0 0% 0% / 0.04);
+  }
+
+  .animate-pulse-slow {
+    animation: pulse-slow 3s ease-in-out infinite;
+  }
+
+  .animate-equalizer {
+    animation: equalizer 0.8s ease-in-out infinite alternate;
+  }
+
+  .animate-spin-slow {
+    animation: spin-slow 8s linear infinite;
+  }
+
+  .animate-now-playing-pulse {
+    animation: now-playing-pulse 2s ease-in-out infinite;
+  }
+}
+
+@keyframes pulse-slow {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+
+@keyframes equalizer {
+  0% { height: 20%; }
+  100% { height: 100%; }
+}
+
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes now-playing-pulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.05); opacity: 0.9; }
+}
